@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import type { FileNode } from "../../../data/folders";
 
-const Editor = ({ content }: { content: string }) => {
+const Editor = ({ content }: { content: FileNode | null }) => {
   const refNode = useRef<HTMLDivElement>(null);
   const [lineCount, setLineCount] = useState(0);
 
@@ -31,6 +32,8 @@ const Editor = ({ content }: { content: string }) => {
     };
   }, [content]);
 
+  if (!content) return null;
+
   return (
     <div className="flex">
       <div className="pr-5">
@@ -38,7 +41,9 @@ const Editor = ({ content }: { content: string }) => {
           <div key={i}>{i + 1}</div>
         ))}
       </div>
-      <div ref={refNode}>{content}</div>
+      <div className="whitespace-pre-wrap" ref={refNode}>
+        {content.content}
+      </div>
     </div>
   );
 };

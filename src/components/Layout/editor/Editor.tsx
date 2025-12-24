@@ -8,13 +8,14 @@ const Editor = ({ content }: { content: FileNode | null }) => {
   useEffect(() => {
     const ref = refNode.current;
     if (!ref) return;
-
     const calculateLines = () => {
       const style = window.getComputedStyle(ref);
       const lineHeight = parseInt(style.lineHeight);
       const nodeHeight = ref.scrollHeight;
       const lines = Math.ceil(nodeHeight / lineHeight);
       setLineCount(lines);
+      console.log(lineHeight);
+      console.log(lineCount);
       console.log(lines);
       console.log(nodeHeight);
     };
@@ -35,13 +36,13 @@ const Editor = ({ content }: { content: FileNode | null }) => {
   if (!content) return null;
 
   return (
-    <div className="flex">
-      <div className="pr-5">
+    <div className="flex relative">
+      <div className="pr-5 absolute">
         {Array.from({ length: lineCount }, (_, i) => (
           <div key={i}>{i + 1}</div>
         ))}
       </div>
-      <div className="whitespace-pre-wrap" ref={refNode}>
+      <div className="whitespace-pre-wrap pl-8" ref={refNode}>
         {content.content}
       </div>
     </div>

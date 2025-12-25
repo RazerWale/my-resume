@@ -108,3 +108,47 @@ export const test = [
     content: Skills,
   },
 ];
+
+export const test1 = {
+  folderName: "src",
+  children: {
+    fileName: "Roger",
+  },
+};
+
+const fileSystem = {
+  folderName: "src",
+  children: {
+    utils: {
+      folderName: "utils",
+      children: {
+        helper: { fileName: "helper.js" },
+      },
+    },
+  },
+};
+
+const findPath = (file, target, currentPath) => {
+  // **Check if current object is the target**
+  if ((file.folderName || file.fileName) === target) {
+    // If match: build full path
+    const path = [...currentPath, file.folderName || file.fileName];
+    // return it
+    return path;
+  }
+  // **If not found, check if object has children**
+  if (!file.children) return null;
+
+  //**If has children, loop through them**
+  for (const [key, value] of Object.entries(file.children)) {
+    // Create new path (add current folder name to currentPath)
+    const newPath = [...currentPath, file.folderName || file.fileName];
+    const recursive = findPath(value, target, newPath);
+    if (recursive) return recursive;
+  }
+
+  return null;
+};
+
+// Should return: 'src/utils/helper.js'
+console.log("fuck yo - ", findPath(fileSystem, "utils", []));

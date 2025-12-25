@@ -1,12 +1,32 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import type { FileNode } from "../../../data/folders";
 
 const Editor = ({ content }: { content: FileNode | null }) => {
   const refNode = useRef<HTMLDivElement>(null);
+  const refCloneNode = useRef<HTMLDivElement>(null);
   const [lineCount, setLineCount] = useState(0);
+  const [refCloneWidth, setRefCloneWidth] = useState<number | null>(null);
 
-  useEffect(() => {
-    const ref = refNode.current;
+  useLayoutEffect(() => {
+    const ref = refCloneNode.current;
+    if (!ref) return;
+
+    const updateWidth = () => {
+      setRefCloneWidth(ref.clientWidth);
+    };
+
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(ref);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const ref = refCloneNode.current;
     if (!ref) return;
     const calculateLines = () => {
       const style = window.getComputedStyle(ref);
@@ -14,13 +34,7 @@ const Editor = ({ content }: { content: FileNode | null }) => {
       const nodeHeight = ref.scrollHeight;
       const lines = Math.ceil(nodeHeight / lineHeight);
       setLineCount(lines);
-      console.log(lineHeight);
-      console.log(lineCount);
-      console.log(lines);
-      console.log(nodeHeight);
     };
-
-    calculateLines();
 
     const observer = new ResizeObserver(() => {
       calculateLines();
@@ -37,12 +51,22 @@ const Editor = ({ content }: { content: FileNode | null }) => {
 
   return (
     <div className="flex relative">
-      <div className="pr-5 absolute">
+      <div className="pr-5">
         {Array.from({ length: lineCount }, (_, i) => (
           <div key={i}>{i + 1}</div>
         ))}
       </div>
       <div className="whitespace-pre-wrap pl-8" ref={refNode}>
+        {content.content}
+      </div>
+      <div
+        className="whitespace-pre-wrap invisible absolute"
+        ref={refCloneNode}
+        style={{
+          width: refCloneWidth || "auto",
+          whiteSpace: "pre-wrap",
+        }}
+      >
         {content.content}
       </div>
     </div>

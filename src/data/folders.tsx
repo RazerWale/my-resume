@@ -1,16 +1,17 @@
 import About from "../components/sections/About";
 import Skills from "../components/sections/Skills";
+import Education from "../components/sections/Education";
 
 export interface FileNode {
   fileName: string;
   type: "file";
-  content: string;
+  content: React.ReactNode;
 }
 
 export interface FolderNode {
   folderName: string;
   type: "folder";
-  content?: string;
+  content?: React.ReactNode;
   children: Array<FileNode | FolderNode>;
 }
 
@@ -24,27 +25,12 @@ export const folders: FolderNode[] = [
       {
         fileName: "About",
         type: "file",
-        content: `Recently graduated from a full-stack bootcamp, I'm eager to transition my career from a
-background in logistics to the dynamic world of web development and programming, where I'm
-experiencing the excitement of never-ending learning opportunities. As a dedicated team player
-with the ability to act and solve problems independently when needed, I'm ready to bring my skills
-and experience to the field of web development while also bringing value to the team. Currently
-developing my skills in React, TypeScript, and looking forward to learning Vue.js next.`,
+        content: <About />,
       },
       {
         fileName: "Education",
         type: "file",
-        content: `Wcoding - Seoul, South Korea
-march 2023 - october 2023 
-Completed a full-stack coding bootcamp to learn
-both back end (PHP, MySQL, SQL) and front end
-(CSS, HTML, JS) and actively participated in
-various group projects.
-
-Tongji University - Shanghai, China
-2009-2013
-Bachelor of Arts in Chinese Language
-(Economics and Trade Oriented)`,
+        content: <Education />,
       },
       {
         fileName: "Projects",

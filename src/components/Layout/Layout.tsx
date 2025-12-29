@@ -11,7 +11,7 @@ interface LayoutProps {
 const Layout = ({ sidebar, children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen h-5">
-      <AppBar></AppBar>
+      <AppBar />
       <div className="flex flex-1 border-x border-black divide-x divide-black">
         {sidebar}
         <main className="flex flex-1 flex-col overflow-auto bg-(--color-bg-secondary) ">

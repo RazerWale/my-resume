@@ -8,7 +8,7 @@ interface SidebarProps {
 
 const Sidebar = ({ onFileSelect }: SidebarProps) => {
   return (
-    <div className="bg-(--color-bg) ">
+    <div className="bg-(--color-bg) text-(--color-text-white)">
       <SidebarControls />
       <SidebarFolders onFileSelect={onFileSelect} />
     </div>

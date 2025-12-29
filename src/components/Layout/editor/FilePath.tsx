@@ -9,7 +9,11 @@ interface FilePathProps {
 const FilePath = ({ target, folders }: FilePathProps) => {
   const filePath = target ? findPath(folders, target.fileName) : null;
 
-  return <div>{filePath ? filePath.join(" > ") : "choose file"}</div>;
+  return (
+    <div className="pl-2">
+      {filePath ? filePath.join(" > ") : "choose file"}
+    </div>
+  );
 };
 
 export default FilePath;

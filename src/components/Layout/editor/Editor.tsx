@@ -50,13 +50,13 @@ const Editor = ({ content }: { content: FileNode | null }) => {
   if (!content) return null;
 
   return (
-    <div className="flex relative">
-      <div className="pr-5">
+    <div className="flex relative ">
+      <div className="px-8 ">
         {Array.from({ length: lineCount }, (_, i) => (
           <div key={i}>{i + 1}</div>
         ))}
       </div>
-      <div className="whitespace-pre-wrap pl-8" ref={refNode}>
+      <div className="whitespace-pre-wrap " ref={refNode}>
         {content.content}
       </div>
       <div

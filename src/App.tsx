@@ -14,8 +14,10 @@ function App() {
   };
   return (
     <Layout sidebar={<Sidebar onFileSelect={handleFileSelect} />}>
-      <FilePath target={currentFolder} folders={folders[0]} />
-      <Editor content={currentFolder} />
+      <div className="text-(--color-text-grey)">
+        <FilePath target={currentFolder} folders={folders[0]} />
+        <Editor content={currentFolder} />
+      </div>
     </Layout>
   );
 }

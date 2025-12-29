@@ -8,7 +8,7 @@ interface SidebarProps {
 
 const Sidebar = ({ onFileSelect }: SidebarProps) => {
   return (
-    <div className="bg-(--color-bg) text-(--color-text-white)">
+    <div className="max-w-50 h-full resize-x overflow-auto bg-(--color-bg) text-(--color-text-white)">
       <SidebarControls />
       <SidebarFolders onFileSelect={onFileSelect} />
     </div>

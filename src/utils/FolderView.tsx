@@ -11,7 +11,11 @@ const FolderView: React.FC<FolderViewProps> = ({ node, onFileSelect }) => {
   //base case
   if (node.type === "file") {
     return (
-      <div onClick={() => onFileSelect(node)} key={node.fileName}>
+      <div
+        onClick={() => onFileSelect(node)}
+        key={node.fileName}
+        className="pl-8 cursor-pointer hover:bg-white/10 transition-colors truncate"
+      >
         {node.fileName}
       </div>
     );
@@ -21,7 +25,7 @@ const FolderView: React.FC<FolderViewProps> = ({ node, onFileSelect }) => {
     <div>
       <div>{node.folderName}</div>
       {node.children && node.children.length > 0 && (
-        <div className="ml-8">
+        <div className="">
           {node.children.map((child) => (
             <FolderView
               key={

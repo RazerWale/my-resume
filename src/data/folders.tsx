@@ -17,6 +17,12 @@ export interface FolderNode {
 
 export type Node = FileNode | FolderNode;
 
+export const defaultPage: FileNode = {
+  fileName: "Hello its me Anton!",
+  type: "file",
+  content: "This page is about me and only me!",
+};
+
 export const folders: FolderNode[] = [
   {
     folderName: "src",

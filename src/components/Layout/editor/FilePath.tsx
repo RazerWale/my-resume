@@ -2,7 +2,7 @@ import { findPath } from "../../../utils/findPath";
 import type { FileNode, FolderNode } from "../../../data/folders";
 
 interface FilePathProps {
-  target: FileNode | null;
+  target?: FileNode;
   folders: FolderNode;
 }
 

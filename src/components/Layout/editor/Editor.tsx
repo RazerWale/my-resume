@@ -1,7 +1,7 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import type { FileNode } from "../../../data/folders";
 
-const Editor = ({ content }: { content: FileNode | null }) => {
+const Editor = ({ content }: { content?: FileNode }) => {
   const refNode = useRef<HTMLDivElement>(null);
   const refCloneNode = useRef<HTMLDivElement>(null);
   const [lineCount, setLineCount] = useState(0);

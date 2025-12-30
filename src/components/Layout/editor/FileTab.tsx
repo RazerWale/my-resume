@@ -1,8 +1,15 @@
-import type { FileNode } from "../../../data/folders";
-import { defaultPage } from "../../../data/folders";
-
-const FileTab = ({ file = defaultPage }: { file?: FileNode }) => {
-  return <div>{file?.fileName}</div>;
+const FileTab = ({ tabs }: { tabs: string[] }) => {
+  return (
+    <div className="flex flex-row ">
+      {tabs.map((name) => {
+        return (
+          <div className="px-2 border-black border" key={name}>
+            {name}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default FileTab;

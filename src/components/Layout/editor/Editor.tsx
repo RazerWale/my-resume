@@ -11,8 +11,6 @@ const Editor = ({ content }: { content?: FileNode }) => {
     //calculates current clone width
     const ref = refNode.current;
     if (!ref) return;
-    console.log(ref);
-    console.log(refCloneWidth);
     const updateWidth = () => {
       setRefCloneWidth(ref.clientWidth);
     };
@@ -39,9 +37,6 @@ const Editor = ({ content }: { content?: FileNode }) => {
       const nodeHeight = ref.scrollHeight; // set height based on the height of clone ref element
       const lines = Math.round(nodeHeight / lineHeight); // devide ref element height to single line height
       setLineCount(lines); // set amount of lanes to the state
-      console.log("lineHeight - ", lineHeight);
-      console.log("nodeHeight - ", nodeHeight);
-      console.log("lines - ", lines);
     };
 
     const observer = new ResizeObserver(() => {

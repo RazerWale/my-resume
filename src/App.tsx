@@ -9,27 +9,29 @@ import { folders, type FileNode } from "./data/folders";
 import { defaultPage } from "./data/folders";
 
 function App() {
-  const [currentFolder, setCurrentFolder] = useState<FileNode>(defaultPage);
-  const [fileTabs, setFileTabs] = useState<string[]>([defaultPage.fileName]);
+  const [currentFile, setCurrentFile] = useState<FileNode>(defaultPage);
+  const [fileTabs, setFileTabs] = useState<FileNode[]>([defaultPage]);
 
   const handleFileSelect = (file: FileNode) => {
-    setCurrentFolder(file);
-    setFileTabs((prev) =>
-      prev.includes(file.fileName) ? prev : [...prev, file.fileName]
-    );
+    setCurrentFile(file);
+    setFileTabs((prev) => (prev.includes(file) ? prev : [...prev, file]));
   };
 
-  const handleFileClose = (fileName: string) => {
-    setFileTabs((prev) => prev.filter((tab) => tab !== fileName));
+  const handleFileClose = (file: FileNode) => {
+    setFileTabs((prev) => prev.filter((tab) => tab.fileName !== file.fileName));
   };
 
   return (
     <Layout sidebar={<Sidebar onFileSelect={handleFileSelect} />}>
       <div className="text-(--color-text-grey)">
-        <FileTab tabs={fileTabs} onFileClose={handleFileClose} />
+        <FileTab
+          tabs={fileTabs}
+          onFileClose={handleFileClose}
+          onFileSelect={handleFileSelect}
+        />
 
-        <FilePath target={currentFolder} folders={folders[0]} />
-        <Editor content={currentFolder} />
+        <FilePath target={currentFile} folders={folders[0]} />
+        <Editor content={currentFile} />
       </div>
     </Layout>
   );

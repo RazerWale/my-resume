@@ -18,7 +18,13 @@ function App() {
   };
 
   const handleFileClose = (file: FileNode) => {
-    setFileTabs((prev) => prev.filter((tab) => tab.fileName !== file.fileName));
+    setFileTabs((prev) => {
+      const updated = prev.filter((tab) => tab.fileName !== file.fileName);
+
+      setCurrentFile(updated.at(-1) ?? defaultPage);
+
+      return updated;
+    });
   };
 
   return (

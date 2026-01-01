@@ -2,12 +2,17 @@ import type { Node } from "../data/folders";
 
 type FileNode = Extract<Node, { type: "file" }>;
 
-interface FolderViewProps {
+type FolderViewProps = {
   node: Node;
+  currentFile: FileNode | null;
   onFileSelect: (file: FileNode) => void;
-}
+};
 
-const FolderView: React.FC<FolderViewProps> = ({ node, onFileSelect }) => {
+const FolderView: React.FC<FolderViewProps> = ({
+  node,
+  onFileSelect,
+  currentFile,
+}: FolderViewProps) => {
   //base case
   if (node.type === "file") {
     return (
@@ -35,6 +40,7 @@ const FolderView: React.FC<FolderViewProps> = ({ node, onFileSelect }) => {
               }
               node={child}
               onFileSelect={onFileSelect}
+              currentFile={currentFile}
             />
           ))}
         </div>

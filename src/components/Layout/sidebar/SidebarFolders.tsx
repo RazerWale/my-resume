@@ -1,13 +1,22 @@
 import { folders } from "../../../data/folders";
 import FolderView from "../../../utils/FolderView";
-import type { OnFileSelect } from "../../../types/editor";
+import type { FileNode } from "../../../data/folders";
 
-const SideBarFolders = ({ onFileSelect }: { onFileSelect: OnFileSelect }) => {
+type SidebarFoldersProps = {
+  currentFile: FileNode | null;
+  onFileSelect: (file: FileNode) => void;
+};
+
+const SideBarFolders = ({ onFileSelect, currentFile }: SidebarFoldersProps) => {
   return (
     <div className="p-1">
       {folders.map((folder) => (
         <div>
-          <FolderView onFileSelect={onFileSelect} node={folder} />
+          <FolderView
+            onFileSelect={onFileSelect}
+            node={folder}
+            currentFile={currentFile}
+          />
         </div>
       ))}
     </div>

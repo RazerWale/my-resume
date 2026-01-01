@@ -28,7 +28,11 @@ function App() {
   };
 
   return (
-    <Layout sidebar={<Sidebar onFileSelect={handleFileSelect} />}>
+    <Layout
+      sidebar={
+        <Sidebar onFileSelect={handleFileSelect} currentFile={currentFile} />
+      }
+    >
       <div className="text-(--color-text-grey)">
         <FileTab
           tabs={fileTabs}

@@ -1,12 +1,16 @@
-import type { OnFileSelect } from "../../../types/editor";
+import type { FileNode } from "../../../data/folders";
 import SidebarControls from "./SidebarControls";
 import SidebarFolders from "./SidebarFolders";
+type SidebarProps = {
+  currentFile: FileNode | null;
+  onFileSelect: (file: FileNode) => void;
+};
 
-const Sidebar = ({ onFileSelect }: { onFileSelect: OnFileSelect }) => {
+const Sidebar = ({ currentFile, onFileSelect }: SidebarProps) => {
   return (
     <div className="max-w-50 h-full resize-x overflow-auto bg-(--color-bg) text-(--color-text-white)">
       <SidebarControls />
-      <SidebarFolders onFileSelect={onFileSelect} />
+      <SidebarFolders onFileSelect={onFileSelect} currentFile={currentFile} />
     </div>
   );
 };

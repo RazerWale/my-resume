@@ -15,11 +15,14 @@ const FolderView: React.FC<FolderViewProps> = ({
 }: FolderViewProps) => {
   //base case
   if (node.type === "file") {
+    const isOpen = currentFile?.fileName === node.fileName;
     return (
       <div
         onClick={() => onFileSelect(node)}
         key={node.fileName}
-        className="pl-8 cursor-pointer hover:bg-white/10 transition-colors truncate"
+        className={`pl-8 cursor-pointer hover:bg-white/10 transition-colors truncate 
+          ${isOpen ? "bg-white/10" : ""}
+          `}
       >
         {node.fileName}
       </div>

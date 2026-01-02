@@ -21,7 +21,7 @@ const FileTab = ({
           <div
             className={`flex items-center px-2 border-black border-r group border-b bg-(--color-bg) ${
               isOpen
-                ? "border-b-0 border-t border-t-amber-700 bg-(--color-bg-secondary)"
+                ? "border-b-0 border-t border-t-amber-700 bg-(--color-bg-secondary) text-white"
                 : ""
             }`}
             key={file.fileName}
